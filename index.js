@@ -13,29 +13,29 @@ var router = express.Router();
 router.get("/", function (req, res) {
   res.send("Welcome to Qikmail");
 });
-router.post("/sendemail", function (req, res) {
-  let mailOptions = req.body;
-  let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD,
-    },
-  });
+// router.post("/sendemail", function (req, res) {
+//   let mailOptions = req.body;
+//   let transporter = nodemailer.createTransport({
+//     service: "gmail",
+//     auth: {
+//       user: process.env.EMAIL,
+//       pass: process.env.PASSWORD,
+//     },
+//   });
 
-  transporter.sendMail(mailOptions, function (err, data) {
-    if (err) {
-      res.json({
-        message: "Internal server error. Try again after sometime",
-        status: false,
-      });
+//   transporter.sendMail(mailOptions, function (err, data) {
+//     if (err) {
+//       res.json({
+//         message: "Internal server error. Try again after sometime",
+//         status: false,
+//       });
 
-      console.log(err);
-    } else {
-      res.json({ message: "Mail sent !", status: true });
-    }
-  });
-});
+//       console.log(err);
+//     } else {
+//       res.json({ message: "Mail sent !", status: true });
+//     }
+//   });
+// });
 
 app.use("/", router);
 
