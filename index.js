@@ -10,6 +10,9 @@ var port = process.env.PORT || 3000;
 
 var router = express.Router();
 
+router.get("/", function (req, res) {
+  res.send("Welcome to Qikmail");
+});
 router.post("/sendemail", function (req, res) {
   let mailOptions = req.body;
   let transporter = nodemailer.createTransport({
@@ -34,7 +37,7 @@ router.post("/sendemail", function (req, res) {
   });
 });
 
-app.use("/api/v1", router);
+app.use("/", router);
 
 app.listen(port);
 
