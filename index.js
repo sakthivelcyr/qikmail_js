@@ -6,15 +6,13 @@ const app = express(); // define our app using express
 // this will let us get the data from a POST
 app.use(express.json());
 
-const port = process.env.PORT || 9000;
+const port = 9000;
 
-const router = express.Router();
-
-router.get("/", function (req, res) {
+app.get("/", function (req, res) {
   res.send("Welcome to Qikmail");
 });
 
-router.post("/sendemail", function (req, res) {
+app.post("/sendemail", function (req, res) {
   let mailOptions = req.body;
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -37,8 +35,6 @@ router.post("/sendemail", function (req, res) {
     }
   });
 });
-
-app.use("/", router);
 
 app.listen(port);
 
